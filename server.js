@@ -19,8 +19,8 @@ mongoose.connect("mongodb://localhost/workout", {
 });
 
 // routes
-const apiRoutes = require("./routes/api.js");
-const viewRoutes = require("./routes/view.js")
+const apiRoutes = require("./routes/apiRoutes.js");
+const viewRoutes = require("./routes/viewRoutes.js")
 app.use(apiRoutes);
 app.use(viewRoutes);
 
