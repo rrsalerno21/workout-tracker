@@ -1,4 +1,26 @@
 const API = {
+  async getWorkoutTime() {
+    let res;
+    try {
+      res = await fetch("/api/workouts");
+    } catch (err) {
+      console.log(err)
+    }
+    const json = await res.json();
+    let totalTime = 0;
+    const date = new Date()
+    const today = date.toISOString().split('T')[0];
+    console.log('Today', today);
+    json.forEach(workout => {
+      if (workout.day.split('T')[0] === today) {
+        workout.exercises.forEach(exercise => {
+          totalTime += exercise.duration;
+        })
+      }
+    })
+    
+    return totalTime;
+  },
   async getLastWorkout() {
     let res;
     try {

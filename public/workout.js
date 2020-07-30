@@ -1,10 +1,17 @@
 async function initWorkout() {
-  const lastWorkout = await API.getLastWorkout();
+  let lastWorkout, allWorkouts;
+  try {
+    lastWorkout = await API.getLastWorkout();
+    totalTime = await API.getWorkoutTime();
+  } catch (err) {
+    if (err) throw err;
+  }
+  console.log('Total Time', totalTime)
   console.log("Last workout:", lastWorkout);
   if (lastWorkout) {
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
+      totalDuration: totalTime,
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
