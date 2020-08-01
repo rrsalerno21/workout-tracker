@@ -13,9 +13,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-var MONGODB_URI = process.env.MONGODB_URI || `mongodb://myDBuser:password1@ds155292.mlab.com:55292/heroku_d7fv27fw`;
+var MONGODB_URI = process.env.MONGODB_URI || 
+`mongodb://myDBuser:password1@ds155292.mlab.com:55292/heroku_d7fv27fw`;
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true
+});
 
 // routes
 const apiRoutes = require("./routes/apiRoutes.js");
