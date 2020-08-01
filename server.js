@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true,  useUnifiedTopology: true });
+mongoose.connect(MONGODB_URI);
 
 // routes
 const apiRoutes = require("./routes/apiRoutes.js");
